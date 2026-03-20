@@ -1,0 +1,104 @@
+version: 2
+
+models:
+  - name: dim_patient
+    description: "Patient dimension with SCD Type 2 history tracking"
+    columns:
+      - name: patient_key
+        description: "Surrogate key — MD5 of patient_id + effective_date"
+        tests:
+          - not_null
+          - unique
+      - name: patient_id
+        tests:
+          - not_null
+      - name: age
+        tests:
+          - not_null
+      - name: gender
+        tests:
+          - accepted_values:
+              values: ['M','F','O','U']
+
+  - name: dim_doctor
+    description: "Doctor dimension — SCD Type 1"
+    columns:
+      - name: doctor_key
+        tests:
+          - not_null
+          - unique
+      - name: doctor_id
+        tests:
+          - not_null
+
+  - name: dim_department
+    description: "Hospital department reference dimension"
+    columns:
+      - name: department_key
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_date
+    description: "Date dimension covering 2021-2024"
+    columns:
+      - name: date_key
+        tests:
+          - not_null
+          - unique
+      - name: year
+        tests:
+          - not_null
+
+  - name: fact_visits
+    description: "Core fact table — one row per patient visit"
+    columns:
+      - name: visit_key
+        tests:
+          - not_null
+          - unique
+      - name: visit_id
+        tests:
+          - not_null
+      - name: patient_key
+        tests:
+          - not_null
+      - name: doctor_key
+        tests:
+          - not_null
+      - name: date_key
+        tests:
+          - not_null
+      - name: visit_type
+        tests:
+          - accepted_values:
+              values: ['Opd','Ipd','Emergency','Telehealth']
+
+  - name: fact_billing
+    description: "Billing fact table — one row per billing record"
+    columns:
+      - name: billing_key
+        tests:
+          - not_null
+          - unique
+      - name: visit_key
+        tests:
+          - not_null
+      - name: total_amount
+        tests:
+          - not_null
+
+  - name: fact_lab_results
+    description: "Lab results fact table — one row per lab test"
+    columns:
+      - name: lab_key
+        tests:
+          - not_null
+          - unique
+      - name: visit_key
+        tests:
+          - not_null
+      - name: is_abnormal_flag
+        tests:
+          - accepted_values:
+              values: [0, 1]

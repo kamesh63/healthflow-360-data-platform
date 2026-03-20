@@ -1,0 +1,19 @@
+WITH stg AS (
+    SELECT * FROM {{ ref('stg_doctors') }}
+)
+SELECT
+    MD5(DOCTOR_ID)          AS doctor_key,
+    DOCTOR_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    FULL_NAME,
+    SPECIALIZATION,
+    DEPARTMENT,
+    QUALIFICATION,
+    HIRE_DATE,
+    EXPERIENCE_YEARS,
+    CONSULTATION_FEE,
+    IS_ACTIVE,
+    CREATED_AT,
+    LOADED_AT
+FROM stg

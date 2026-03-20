@@ -1,0 +1,68 @@
+[0m11:07:00.112972 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D2FF4D1A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D2FE170490>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D2FF4D73D0>]}
+
+
+============================== 11:07:00.134298 | 6bd115d0-8e88-467c-8e9a-db20ab8e5e63 ==============================
+[0m11:07:00.134298 [info ] [MainThread]: Running with dbt=1.7.19
+[0m11:07:00.138328 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\KameshV\\.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt init healthflow', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m11:07:00.146759 [debug] [MainThread]: Starter project path: c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\dbt\include\starter_project
+[0m11:07:00.399224 [info ] [MainThread]: 
+Your new dbt project "healthflow" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m11:07:00.404474 [info ] [MainThread]: Setting up your profile.
+[0m11:10:03.068598 [error] [MainThread]: Encountered an error:
+
+[0m11:10:03.281218 [error] [MainThread]: Traceback (most recent call last):
+  File "c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\dbt\cli\requires.py", line 91, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\dbt\cli\requires.py", line 76, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\dbt\cli\main.py", line 516, in init
+    results = task.run()
+              ^^^^^^^^^^
+  File "c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\dbt\task\init.py", line 344, in run
+    self.setup_profile(profile_name)
+  File "c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\dbt\task\init.py", line 264, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+  File "c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\dbt\task\init.py", line 181, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\dbt\task\init.py", line 165, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\dbt\task\init.py", line 131, in generate_target_from_input
+    target[key] = click.prompt(
+                  ^^^^^^^^^^^^^
+  File "c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\click\termui.py", line 171, in prompt
+    value = prompt_func(prompt)
+            ^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\KameshV\Desktop\Learnings\Projects\HealthFlow360\.venv\Lib\site-packages\click\termui.py", line 154, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m11:10:03.297345 [debug] [MainThread]: Command `dbt init` failed at 11:10:03.297345 after 183.39 seconds
+[0m11:10:03.297345 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D2FF5220D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D2FF522650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D2F7368790>]}
+[0m11:10:03.297345 [debug] [MainThread]: Flushing usage events
+[0m11:10:21.387388 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025FEBBB7D90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025FEBBE2CD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025FEBBB4BD0>]}
+
+
+============================== 11:10:21.403170 | 908c43a9-82bb-428a-a83d-923f5900e4c1 ==============================
+[0m11:10:21.403170 [info ] [MainThread]: Running with dbt=1.7.19
+[0m11:10:21.405192 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\KameshV\\.dbt', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt init healthflow', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m11:10:21.407213 [info ] [MainThread]: A project called healthflow already exists here.
+[0m11:10:21.411252 [debug] [MainThread]: Command `dbt init` succeeded at 11:10:21.411252 after 0.17 seconds
+[0m11:10:21.412869 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025FEA449910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025FE3D0A190>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025FEBB94450>]}
+[0m11:10:21.412869 [debug] [MainThread]: Flushing usage events

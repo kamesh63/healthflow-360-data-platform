@@ -1,0 +1,131 @@
+-- ============================================================
+-- HealthFlow 360 — RAW Schema Tables (Bronze Layer)
+-- CONCEPT: RAW tables mirror source exactly.
+-- All columns are VARCHAR — we preserve data as-is.
+-- No transformations, no business rules.
+-- If source sends "abc" in a date field, we store "abc".
+-- This is your audit trail and rollback point.
+-- ============================================================
+
+USE WAREHOUSE HEALTHFLOW_WH;
+USE DATABASE  HEALTHFLOW_DB;
+USE SCHEMA    RAW;
+
+-- ── RAW.PATIENTS ─────────────────────────────────────────────
+CREATE OR REPLACE TABLE RAW.PATIENTS (
+    PATIENT_ID      VARCHAR(20),
+    FIRST_NAME      VARCHAR(100),
+    LAST_NAME       VARCHAR(100),
+    DOB             VARCHAR(20),     -- Raw string, not DATE
+    GENDER          VARCHAR(10),
+    CITY            VARCHAR(100),
+    STATE           VARCHAR(10),
+    ZIP_CODE        VARCHAR(20),
+    INSURANCE_TYPE  VARCHAR(50),
+    BLOOD_GROUP     VARCHAR(10),
+    PHONE           VARCHAR(50),
+    EMAIL           VARCHAR(200),
+    EFFECTIVE_DATE  VARCHAR(20),
+    EXPIRY_DATE     VARCHAR(20),
+    IS_CURRENT      VARCHAR(5),
+    CREATED_AT      VARCHAR(30),
+    -- Pipeline metadata
+    _SOURCE_FILE    VARCHAR(200),
+    _INGESTION_DATE VARCHAR(20),
+    _PIPELINE_VER   VARCHAR(20),
+    -- Snowflake load metadata
+    _LOAD_TIMESTAMP TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- ── RAW.DOCTORS ──────────────────────────────────────────────
+CREATE OR REPLACE TABLE RAW.DOCTORS (
+    DOCTOR_ID         VARCHAR(20),
+    FIRST_NAME        VARCHAR(100),
+    LAST_NAME         VARCHAR(100),
+    SPECIALIZATION    VARCHAR(100),
+    DEPARTMENT        VARCHAR(100),
+    QUALIFICATION     VARCHAR(50),
+    HIRE_DATE         VARCHAR(20),
+    EXPERIENCE_YEARS  VARCHAR(10),
+    CONSULTATION_FEE  VARCHAR(20),
+    IS_ACTIVE         VARCHAR(5),
+    CREATED_AT        VARCHAR(30),
+    _SOURCE_FILE      VARCHAR(200),
+    _INGESTION_DATE   VARCHAR(20),
+    _PIPELINE_VER     VARCHAR(20),
+    _LOAD_TIMESTAMP   TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- ── RAW.DEPARTMENTS ──────────────────────────────────────────
+CREATE OR REPLACE TABLE RAW.DEPARTMENTS (
+    DEPARTMENT_ID   VARCHAR(20),
+    DEPARTMENT_NAME VARCHAR(100),
+    FLOOR           VARCHAR(10),
+    BUILDING        VARCHAR(100),
+    HEAD_DOCTOR_ID  VARCHAR(20),
+    CREATED_AT      VARCHAR(30),
+    _LOAD_TIMESTAMP TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- ── RAW.APPOINTMENTS ─────────────────────────────────────────
+CREATE OR REPLACE TABLE RAW.APPOINTMENTS (
+    VISIT_ID         VARCHAR(20),
+    PATIENT_ID       VARCHAR(20),
+    DOCTOR_ID        VARCHAR(20),
+    DEPARTMENT       VARCHAR(100),
+    VISIT_DATE       VARCHAR(20),
+    VISIT_TYPE       VARCHAR(50),
+    DIAGNOSIS_CODE   VARCHAR(20),
+    DIAGNOSIS_DESC   VARCHAR(200),
+    STATUS           VARCHAR(50),
+    DURATION_MINUTES VARCHAR(10),
+    FOLLOW_UP_NEEDED VARCHAR(5),
+    CREATED_AT       VARCHAR(30),
+    _SOURCE_FILE     VARCHAR(200),
+    _INGESTION_DATE  VARCHAR(20),
+    _PIPELINE_VER    VARCHAR(20),
+    _LOAD_TIMESTAMP  TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- ── RAW.LAB_RESULTS ──────────────────────────────────────────
+CREATE OR REPLACE TABLE RAW.LAB_RESULTS (
+    LAB_ID          VARCHAR(20),
+    VISIT_ID        VARCHAR(20),
+    PATIENT_ID      VARCHAR(20),
+    DEPARTMENT      VARCHAR(100),
+    TEST_NAME       VARCHAR(100),
+    TEST_DATE       VARCHAR(20),
+    RESULT_VALUE    VARCHAR(50),
+    UNIT            VARCHAR(50),
+    NORMAL_RANGE    VARCHAR(50),
+    IS_ABNORMAL     VARCHAR(5),
+    REVIEWED_BY     VARCHAR(20),
+    CREATED_AT      VARCHAR(30),
+    _SOURCE_FILE    VARCHAR(200),
+    _INGESTION_DATE VARCHAR(20),
+    _PIPELINE_VER   VARCHAR(20),
+    _LOAD_TIMESTAMP TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- ── RAW.BILLING ──────────────────────────────────────────────
+CREATE OR REPLACE TABLE RAW.BILLING (
+    BILLING_ID        VARCHAR(20),
+    VISIT_ID          VARCHAR(20),
+    PATIENT_ID        VARCHAR(20),
+    BILLING_DATE      VARCHAR(20),
+    VISIT_TYPE        VARCHAR(50),
+    INSURANCE_TYPE    VARCHAR(50),
+    TOTAL_AMOUNT      VARCHAR(20),
+    INSURANCE_COVERED VARCHAR(20),
+    PATIENT_DUE       VARCHAR(20),
+    PAYMENT_STATUS    VARCHAR(50),
+    PAYMENT_METHOD    VARCHAR(50),
+    CREATED_AT        VARCHAR(30),
+    _SOURCE_FILE      VARCHAR(200),
+    _INGESTION_DATE   VARCHAR(20),
+    _PIPELINE_VER     VARCHAR(20),
+    _LOAD_TIMESTAMP   TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- Verify all tables created
+SHOW TABLES IN SCHEMA RAW;

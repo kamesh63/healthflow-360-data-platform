@@ -1,0 +1,39 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Credentials — NEVER commit these
+.env
+*.env
+secrets.yml
+
+# dbt
+dbt_healthflow/healthflow/target/
+dbt_healthflow/healthflow/dbt_packages/
+dbt_healthflow/healthflow/logs/
+dbt_healthflow/healthflow/.user.yml
+
+# Spark — Windows specific, not needed in repo
+hadoop_stub/
+spark_tmp/
+spark_warehouse/
+
+# Data files — too large for GitHub
+source_data/cleaned/
+source_data/split/
+source_data/parquet/
+source_data/*.csv
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/settings.json
