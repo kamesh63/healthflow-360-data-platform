@@ -1,30 +1,30 @@
-# 🏥 HealthFlow 360 — Enterprise Healthcare Data Platform
+# HealthFlow 360 — Enterprise Healthcare Data Platform
 
 > End-to-end data engineering pipeline processing **11.5 Million healthcare records** using PySpark, Snowflake, and dbt.
 
 ---
 
-## 🚀 What This Project Does
+## What This Project Does
 
 A hospital network generates millions of records daily across disconnected systems — patient records, lab results, billing, appointments. This platform unifies them into a single analytics-ready data warehouse with enterprise-grade governance.
 
 ---
 
-## 📊 By The Numbers
+## By The Numbers
 
 | | |
 |---|---|
-| 📦 Records Processed | **11,510,015** |
-| 🏥 Source Systems | **5** |
-| ⚡ CPU Cores Used | **14** (parallel) |
-| ❄️ Snowflake Layers | **3** (Bronze → Silver → Gold) |
-| 🔄 dbt Models | **13** |
-| ✅ Automated Tests | **45 passing** |
-| 🔒 Security Policies | HIPAA-compliant |
+| Records Processed | **11,510,015** |
+| Source Systems | **5** |
+| CPU Cores Used | **14** (parallel) |
+| Snowflake Layers | **3** (Bronze → Silver → Gold) |
+| dbt Models | **13** |
+| Automated Tests | **45 passing** |
+| Security Policies | HIPAA-compliant |
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 ```
 CSV Sources (11.5M rows)
       ↓
@@ -45,7 +45,7 @@ IDMC — Full pipeline orchestration
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -57,7 +57,7 @@ IDMC — Full pipeline orchestration
 
 ---
 
-## 📁 Key Files
+## Key Files
 ```
 source_data/generate_data.py      → Generates 11.5M realistic records
 spark_pipeline/ingest_pipeline.py → PySpark quality + transformation
@@ -70,7 +70,7 @@ dbt_healthflow/models/marts/      → 7 mart models (Star Schema)
 
 ---
 
-## ❄️ Snowflake Data Model
+## Snowflake Data Model
 ```
 DIM_PATIENT (SCD Type 2)
 DIM_DOCTOR
@@ -81,7 +81,7 @@ DIM_DATE                 FACT_BILLING (3M rows)
 
 ---
 
-## 🔒 Governance & Security
+## Governance & Security
 
 - **Row Level Security** — Doctors see only their own patients
 - **Column Masking** — Email and DOB masked for non-admin roles
@@ -92,7 +92,7 @@ DIM_DATE                 FACT_BILLING (3M rows)
 
 ---
 
-## ⚡ Performance
+## Performance
 
 - PySpark processes 11.5M rows across **14 CPU cores in parallel**
 - Snowflake **COPY INTO** loads 128,000 rows/second
@@ -101,7 +101,7 @@ DIM_DATE                 FACT_BILLING (3M rows)
 
 ---
 
-## 🏃 How to Run
+## How to Run
 ```bash
 # 1. Setup
 git clone https://github.com/YOUR_USERNAME/healthflow-360-data-platform
@@ -124,7 +124,7 @@ dbt run && dbt test
 
 ---
 
-## 👤 Author
+## Author
 
 **Kamesh V** — Data Engineer, IBM Consulting
 
